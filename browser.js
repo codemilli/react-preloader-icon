@@ -319,6 +319,8 @@ return webpackJsonpPreloaderIcon([0],{
 	                    'svg',
 	                    {
 	                        xmlns: 'http://www.w3.org/2000/svg',
+	                        width: '100%',
+	                        height: '100%',
 	                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize,
 	                        stroke: this.props.strokeColor
 	                    },
@@ -487,7 +489,12 @@ return webpackJsonpPreloaderIcon([0],{
 	                { ref: 'target', className: 'preloader-icon__tail-spin', style: { height: '100%' } },
 	                _react2.default.createElement(
 	                    'svg',
-	                    { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize },
+	                    {
+	                        xmlns: 'http://www.w3.org/2000/svg',
+	                        width: '100%',
+	                        height: '100%',
+	                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize
+	                    },
 	                    _react2.default.createElement(
 	                        'defs',
 	                        null,
@@ -640,7 +647,12 @@ return webpackJsonpPreloaderIcon([0],{
 	                { className: 'preloader-icon__spinning', style: { height: '100%' } },
 	                _react2.default.createElement(
 	                    'svg',
-	                    { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize },
+	                    {
+	                        xmlns: 'http://www.w3.org/2000/svg',
+	                        width: '100%',
+	                        height: '100%',
+	                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize
+	                    },
 	                    _react2.default.createElement(
 	                        'g',
 	                        { fill: 'none' },
