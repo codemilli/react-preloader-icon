@@ -43,9 +43,7 @@
             .body{max-width:100%;height:100%;padding:0}
         }
     </style>
-    <script type="text/javascript" src="browser.vendor.js"></script>
-    <script type="text/javascript" src="browser.js"></script>
-</head>
+<script type="text/javascript" src="browser.vendor.js"></script><script type="text/javascript" src="browser.js"></script></head>
 <body>
 
 <header>
@@ -93,6 +91,7 @@
                                 <select class="icon-form__type-select" name="type">
                                     <option value="oval" selected>Oval</option>
                                     <option value="tailSpin">TailSpin</option>
+                                    <option value="spinning">Spinning</option>
                                 </select>
                                 <label>Type</label>
                             </div>
@@ -154,15 +153,15 @@
         })[0];
 
         hljs.highlightBlock(codebox.find('.codebox__code-view').text(
-                'import PreloaderIcon, {ICON_TYPE} from \'react-preloader-icon\';\n' +
-                '\n' +
-                '<PreloaderIcon\n' +
-                '    type={ICON_TYPE.' + key + '}\n' +
-                '    size={' + options.size + '}\n' +
-                '    strokeWidth={' + options.strokeWidth + '}\n' +
-                '    strokeColor="' + options.strokeColor + '"\n' +
-                '    duration={' + options.duration + '}\n' +
-                '/>'
+            'import PreloaderIcon, {ICON_TYPE} from \'react-preloader-icon\';\n' +
+            '\n' +
+            '<PreloaderIcon\n' +
+            '    type={ICON_TYPE.' + key + '}\n' +
+            '    size={' + options.size + '}\n' +
+            '    strokeWidth={' + options.strokeWidth + '}\n' +
+            '    strokeColor="' + options.strokeColor + '"\n' +
+            '    duration={' + options.duration + '}\n' +
+            '/>'
         )[0]);
     }
 
