@@ -10,7 +10,111 @@
 })(this, function() {
 return webpackJsonpPreloaderIcon([0],{
 
-/***/ 57:
+/***/ 105:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+
+
+var emptyFunction = __webpack_require__(6);
+var invariant = __webpack_require__(0);
+var ReactPropTypesSecret = __webpack_require__(58);
+
+module.exports = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant(
+      false,
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+  };
+  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  };
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+
+/***/ 107:
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+if (false) {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = require('./factoryWithTypeCheckers')(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(105)();
+}
+
+
+/***/ }),
+
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61,7 +165,7 @@ exports.default = pfx;
 
 /***/ }),
 
-/***/ 85:
+/***/ 82:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74,29 +178,33 @@ exports.ICON_TYPE = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(107);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _objectAssign = __webpack_require__(3);
 
 var _objectAssign2 = _interopRequireDefault(_objectAssign);
 
-var _styles = __webpack_require__(92);
+var _styles = __webpack_require__(89);
 
-var _Oval = __webpack_require__(88);
+var _Oval = __webpack_require__(85);
 
 var _Oval2 = _interopRequireDefault(_Oval);
 
-var _TailSpin = __webpack_require__(91);
+var _TailSpin = __webpack_require__(88);
 
 var _TailSpin2 = _interopRequireDefault(_TailSpin);
 
-var _Spinning = __webpack_require__(90);
+var _Spinning = __webpack_require__(87);
 
 var _Spinning2 = _interopRequireDefault(_Spinning);
 
-var _Puff = __webpack_require__(89);
+var _Puff = __webpack_require__(86);
 
 var _Puff2 = _interopRequireDefault(_Puff);
 
@@ -174,13 +282,13 @@ var PreloaderIcon = function (_React$Component) {
 }(_react2.default.Component);
 
 PreloaderIcon.propTypes = {
-    className: _react.PropTypes.string,
-    type: _react.PropTypes.string,
-    size: _react.PropTypes.number,
-    unit: _react.PropTypes.string,
-    strokeWidth: _react.PropTypes.number,
-    strokeColor: _react.PropTypes.string,
-    duration: _react.PropTypes.number
+    className: _propTypes2.default.string,
+    type: _propTypes2.default.string,
+    size: _propTypes2.default.number,
+    unit: _propTypes2.default.string,
+    strokeWidth: _propTypes2.default.number,
+    strokeColor: _propTypes2.default.string,
+    duration: _propTypes2.default.number
 };
 PreloaderIcon.defaultProps = {
     className: '',
@@ -196,13 +304,13 @@ exports.ICON_TYPE = ICON_TYPE;
 
 /***/ }),
 
-/***/ 87:
+/***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _PreloaderIcon = __webpack_require__(85);
+var _PreloaderIcon = __webpack_require__(82);
 
 var _PreloaderIcon2 = _interopRequireDefault(_PreloaderIcon);
 
@@ -213,7 +321,7 @@ module.exports.ICON_TYPE = _PreloaderIcon.ICON_TYPE;
 
 /***/ }),
 
-/***/ 88:
+/***/ 85:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -225,19 +333,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _stepperjs = __webpack_require__(20);
+var _stepperjs = __webpack_require__(19);
 
 var _stepperjs2 = _interopRequireDefault(_stepperjs);
 
-var _linear = __webpack_require__(27);
+var _linear = __webpack_require__(25);
 
 var _linear2 = _interopRequireDefault(_linear);
 
-var _pfx = __webpack_require__(57);
+var _pfx = __webpack_require__(53);
 
 var _pfx2 = _interopRequireDefault(_pfx);
 
@@ -301,8 +409,7 @@ var Oval = function (_React$Component) {
             var _this3 = this;
 
             var strokeWidth = this.props.strokeWidth;
-            var translateSize = strokeWidth / 2 + 1;
-            var viewBoxSize = 38 + strokeWidth;
+            var radius = 50 - strokeWidth / 2;
 
             return _react2.default.createElement(
                 'div',
@@ -315,7 +422,7 @@ var Oval = function (_React$Component) {
                         xmlns: 'http://www.w3.org/2000/svg',
                         width: '100%',
                         height: '100%',
-                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize,
+                        viewBox: '0 0 102 102',
                         stroke: this.props.strokeColor
                     },
                     _react2.default.createElement(
@@ -323,9 +430,9 @@ var Oval = function (_React$Component) {
                         { fill: 'none' },
                         _react2.default.createElement(
                             'g',
-                            { transform: 'translate(' + translateSize + ' ' + translateSize + ')', strokeWidth: strokeWidth },
-                            _react2.default.createElement('circle', { stroke: this.props.strokeColor, strokeOpacity: '.5', cx: '18', cy: '18', r: '18' }),
-                            _react2.default.createElement('path', { d: 'M36 18c0-9.94-8.06-18-18-18' })
+                            { transform: 'translate(1 1)', strokeWidth: strokeWidth },
+                            _react2.default.createElement('circle', { stroke: this.props.strokeColor, strokeOpacity: '.5', cx: '50', cy: '50', r: radius }),
+                            _react2.default.createElement('path', { d: 'M50,' + strokeWidth / 2 + ' A' + radius + ',' + radius + ',0,0,1,' + (50 + radius) + ',50' })
                         )
                     )
                 )
@@ -340,7 +447,7 @@ exports.default = Oval;
 
 /***/ }),
 
-/***/ 89:
+/***/ 86:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -352,19 +459,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _stepperjs = __webpack_require__(20);
+var _stepperjs = __webpack_require__(19);
 
 var _stepperjs2 = _interopRequireDefault(_stepperjs);
 
-var _linear = __webpack_require__(27);
+var _linear = __webpack_require__(25);
 
 var _linear2 = _interopRequireDefault(_linear);
 
-var _bezierEasing = __webpack_require__(56);
+var _bezierEasing = __webpack_require__(52);
 
 var _bezierEasing2 = _interopRequireDefault(_bezierEasing);
 
@@ -387,6 +494,7 @@ var Puff = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Puff.__proto__ || Object.getPrototypeOf(Puff)).call(this, props));
 
+        _this.radius = 50 - props.strokeWidth / 2;
         _this.stepper = new _stepperjs2.default({
             duration: props.duration,
             easing: _linear2.default,
@@ -398,6 +506,8 @@ var Puff = function (_React$Component) {
     _createClass(Puff, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
+            var _this2 = this;
+
             var c1 = this.c1,
                 c2 = this.c2;
 
@@ -405,8 +515,8 @@ var Puff = function (_React$Component) {
             this.stepper.on('update', function (n) {
                 var n2 = n >= .5 ? n - .5 : n + .5;
 
-                c1.setAttribute('r', spread(n) * 20);
-                c2.setAttribute('r', spread(n2) * 20);
+                c1.setAttribute('r', spread(n) * _this2.radius);
+                c2.setAttribute('r', spread(n2) * _this2.radius);
                 c1.style.strokeOpacity = 1 - fade(n);
                 c2.style.strokeOpacity = 1 - fade(n2);
             });
@@ -416,9 +526,13 @@ var Puff = function (_React$Component) {
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps) {
+            if (prevProps.strokeWidth !== this.props.strokeWidth) {
+                this.radius = 50 - this.props.strokeWidth / 2;
+            }
+
             if (prevProps.duration !== this.props.duration) {
-                this.c1.setAttribute('r', 0);
-                this.c2.setAttribute('r', 0);
+                this.c1.setAttribute('r', '0');
+                this.c2.setAttribute('r', '0');
                 this.c1.style.strokeOpacity = 0;
                 this.c2.style.strokeOpacity = 0;
                 this.stepper.option('duration', this.props.duration);
@@ -436,10 +550,7 @@ var Puff = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var strokeWidth = this.props.strokeWidth;
-            var viewBoxSize = 42 + strokeWidth;
+            var _this3 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -448,18 +559,22 @@ var Puff = function (_React$Component) {
                     'svg',
                     {
                         xmlns: 'http://www.w3.org/2000/svg',
-                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize,
+                        viewBox: '0 0 102 102',
                         stroke: this.props.strokeColor
                     },
                     _react2.default.createElement(
                         'g',
-                        { fill: 'none', strokeWidth: strokeWidth },
-                        _react2.default.createElement('circle', { ref: function ref(el) {
-                                return _this2.c1 = el;
-                            }, cx: '22', cy: '22', r: '0', style: { strokeOpacity: 0 } }),
-                        _react2.default.createElement('circle', { ref: function ref(el) {
-                                return _this2.c2 = el;
-                            }, cx: '22', cy: '22', r: '0', style: { strokeOpacity: 0 } })
+                        { fill: 'none' },
+                        _react2.default.createElement(
+                            'g',
+                            { transform: 'translate(1 1)', strokeWidth: this.props.strokeWidth },
+                            _react2.default.createElement('circle', { ref: function ref(el) {
+                                    return _this3.c1 = el;
+                                }, cx: '50', cy: '50', r: '0', style: { strokeOpacity: 0 } }),
+                            _react2.default.createElement('circle', { ref: function ref(el) {
+                                    return _this3.c2 = el;
+                                }, cx: '50', cy: '50', r: '0', style: { strokeOpacity: 0 } })
+                        )
                     )
                 )
             );
@@ -473,7 +588,7 @@ exports.default = Puff;
 
 /***/ }),
 
-/***/ 90:
+/***/ 87:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -485,15 +600,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _stepperjs = __webpack_require__(20);
+var _stepperjs = __webpack_require__(19);
 
 var _stepperjs2 = _interopRequireDefault(_stepperjs);
 
-var _linear = __webpack_require__(27);
+var _linear = __webpack_require__(25);
 
 var _linear2 = _interopRequireDefault(_linear);
 
@@ -585,8 +700,7 @@ var Spinning = function (_React$Component) {
                 strokeColor = _props.strokeColor,
                 strokeWidth = _props.strokeWidth;
 
-            var translateSize = strokeWidth / 2 + 1;
-            var viewBoxSize = 56 + strokeWidth;
+            var radius = 50 - strokeWidth / 2;
 
             return _react2.default.createElement(
                 'div',
@@ -597,7 +711,7 @@ var Spinning = function (_React$Component) {
                         xmlns: 'http://www.w3.org/2000/svg',
                         width: '100%',
                         height: '100%',
-                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize
+                        viewBox: '0 0 560 560'
                     },
                     _react2.default.createElement(
                         'g',
@@ -605,34 +719,34 @@ var Spinning = function (_React$Component) {
                         _react2.default.createElement(
                             'g',
                             {
-                                transform: 'translate(' + translateSize + ' ' + translateSize + ')',
+                                transform: 'translate(10 10)',
                                 stroke: strokeColor,
                                 strokeWidth: strokeWidth
                             },
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c0 = el;
-                                }, cx: '42.601', cy: '11.462', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '426.01', cy: '114.62', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c1 = el;
-                                }, cx: '49.063', cy: '27.063', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '490.63', cy: '270.63', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c2 = el;
-                                }, cx: '42.601', cy: '42.663', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '426.01', cy: '426.63', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c3 = el;
-                                }, cx: '27', cy: '49.125', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '270', cy: '491.25', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c4 = el;
-                                }, cx: '11.399', cy: '42.663', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '113.99', cy: '426.63', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c5 = el;
-                                }, cx: '4.938', cy: '27.063', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '49.38', cy: '270.63', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c6 = el;
-                                }, cx: '11.399', cy: '11.462', r: '5', style: { fillOpacity: 0 }, fill: strokeColor }),
+                                }, cx: '113.99', cy: '114.62', r: radius, style: { fillOpacity: 0 }, fill: strokeColor }),
                             _react2.default.createElement('circle', { ref: function ref(el) {
                                     return _this3.c7 = el;
-                                }, cx: '27', cy: '5', r: '5', style: { fillOpacity: 0 }, fill: strokeColor })
+                                }, cx: '270', cy: '50', r: radius, style: { fillOpacity: 0 }, fill: strokeColor })
                         )
                     )
                 )
@@ -647,7 +761,7 @@ exports.default = Spinning;
 
 /***/ }),
 
-/***/ 91:
+/***/ 88:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -659,19 +773,19 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(12);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _stepperjs = __webpack_require__(20);
+var _stepperjs = __webpack_require__(19);
 
 var _stepperjs2 = _interopRequireDefault(_stepperjs);
 
-var _linear = __webpack_require__(27);
+var _linear = __webpack_require__(25);
 
 var _linear2 = _interopRequireDefault(_linear);
 
-var _pfx = __webpack_require__(57);
+var _pfx = __webpack_require__(53);
 
 var _pfx2 = _interopRequireDefault(_pfx);
 
@@ -735,8 +849,7 @@ var TailSpin = function (_React$Component) {
             var _this3 = this;
 
             var strokeWidth = this.props.strokeWidth;
-            var translateSize = strokeWidth / 2 + 1;
-            var viewBoxSize = 38 + strokeWidth;
+            var radius = 50 - strokeWidth / 2;
 
             return _react2.default.createElement(
                 'div',
@@ -749,7 +862,7 @@ var TailSpin = function (_React$Component) {
                         xmlns: 'http://www.w3.org/2000/svg',
                         width: '100%',
                         height: '100%',
-                        viewBox: '0 0 ' + viewBoxSize + ' ' + viewBoxSize
+                        viewBox: '0 0 102 102'
                     },
                     _react2.default.createElement(
                         'defs',
@@ -767,9 +880,13 @@ var TailSpin = function (_React$Component) {
                         { fill: 'none' },
                         _react2.default.createElement(
                             'g',
-                            { transform: 'translate(' + translateSize + ' ' + translateSize + ')' },
-                            _react2.default.createElement('path', { d: 'M36 18c0-9.94-8.06-18-18-18', stroke: 'url(#a)', strokeWidth: this.props.strokeWidth }),
-                            _react2.default.createElement('circle', { fill: this.props.strokeColor, cx: '36', cy: '18', r: this.props.strokeWidth / 2 })
+                            { transform: 'translate(1 1)' },
+                            _react2.default.createElement('path', {
+                                d: 'M50,' + strokeWidth / 2 + ' A' + radius + ',' + radius + ',0,0,1,' + (50 + radius) + ',50',
+                                stroke: 'url(#a)',
+                                strokeWidth: strokeWidth
+                            }),
+                            _react2.default.createElement('circle', { fill: this.props.strokeColor, cx: 50 + radius, cy: '50', r: strokeWidth / 2 })
                         )
                     )
                 )
@@ -784,7 +901,7 @@ exports.default = TailSpin;
 
 /***/ }),
 
-/***/ 92:
+/***/ 89:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -818,6 +935,6 @@ exports.title = title;
 
 /***/ })
 
-},[87]);
+},[84]);
 });
 //# sourceMappingURL=browser.js.map
