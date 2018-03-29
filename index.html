@@ -42,7 +42,14 @@
             .body{max-width:100%;height:100%;padding:0}
         }
     </style>
-<script type="text/javascript" src="browser.vendor.js"></script><script type="text/javascript" src="browser.js"></script></head>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.development.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.development.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.js"></script>
+    <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script type="text/javascript" src="browser.js"></script></head>
 <body>
 
 <header>
@@ -88,10 +95,10 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <select class="icon-form__type-select" name="type">
-                                    <option value="oval" selected>Oval</option>
-                                    <option value="tailSpin">TailSpin</option>
-                                    <option value="spinning">Spinning</option>
-                                    <option value="puff">Puff</option>
+                                    <option value="Oval" selected>Oval</option>
+                                    <option value="TailSpin">TailSpin</option>
+                                    <option value="Spinning">Spinning</option>
+                                    <option value="Puff">Puff</option>
                                 </select>
                                 <label>Type</label>
                             </div>
@@ -128,34 +135,15 @@
     </div>
 </article>
 
-<script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-serialize-object/2.5.0/jquery.serialize-object.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
 <script>
     var type = window.location.hash.replace('#', '');
     var codebox = $('.codebox');
     var showcase = $('.showcase');
     var iconForm = $('.icon-form');
 
-    function checkHasIconType(type) {
-        var result = false;
-        var k;
-
-        for(k in PreloaderIcon.ICON_TYPE) {
-            if (PreloaderIcon.ICON_TYPE.hasOwnProperty(k) &&
-                PreloaderIcon.ICON_TYPE[k] === type) {
-                result = true;
-                break;
-            }
-        }
-
-        return result;
-    }
-
     function rednerPreloader(options) {
         ReactDOM.render(React.createElement(PreloaderIcon, {
-            type: options.type,
+            loader: PreloaderIcon.loaders[options.type],
             size: options.size,
             strokeWidth: options.strokeWidth,
             strokeColor: options.strokeColor,
@@ -164,15 +152,12 @@
     }
 
     function renderExampleCode(options) {
-        var key = $.grep(Object.keys(PreloaderIcon.ICON_TYPE), function(key) {
-            return PreloaderIcon.ICON_TYPE[key] === options.type;
-        })[0];
-
         hljs.highlightBlock(codebox.find('.codebox__code-view').text(
-            'import PreloaderIcon, {ICON_TYPE} from \'react-preloader-icon\';\n' +
+            'import PreloaderIcon from \'react-preloader-icon\';\n' +
+            'import ' + options.type + ' from \'react-preloader-icon/loaders/' + options.type + '\';\n' +
             '\n' +
             '<PreloaderIcon\n' +
-            '    type={ICON_TYPE.' + key + '}\n' +
+            '    loader={' + options.type + '}\n' +
             '    size={' + options.size + '}\n' +
             '    strokeWidth={' + options.strokeWidth + '}\n' +
             '    strokeColor="' + options.strokeColor + '"\n' +
@@ -181,28 +166,23 @@
         )[0]);
     }
 
-    if (checkHasIconType(type)) {
+    if (PreloaderIcon.loaders[type]) {
         iconForm.find('.icon-form__type-select').val(type);
     }
 
     iconForm.find('.icon-form__form').on('submit', function(event) {
         event.preventDefault();
-
         var options = iconForm.find('.icon-form__form').serializeObject();
-
         options.size = parseInt(options.size, 10);
         options.strokeWidth = parseInt(options.strokeWidth, 10);
         options.duration = parseInt(options.duration, 10);
-
         window.location.hash = '#' + options.type;
-
         rednerPreloader(options);
         renderExampleCode(options);
     });
 
     codebox.on('click', 'a:last', function(event) {
         event.preventDefault();
-
         codebox.find('.codebox__body').toggleClass('show');
     });
 
